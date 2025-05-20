@@ -61,3 +61,27 @@
 -- 地址表中没有 personId = 1 的地址，所以它们的城市和州返回 null。
 -- addressId = 1 包含了 personId = 2 的地址信息。
 
+CREATE TABLE Person (
+    PersonId INT PRIMARY KEY,
+    FirstName VARCHAR,
+    LastName VARCHAR
+);
+
+CREATE TABLE Address (
+    AddressId INT PRIMARY KEY,
+    PersonId INT,
+    City VARCHAR,
+    State VARCHAR
+);
+
+INSERT INTO Person (PersonId, LastName, FirstName)
+VALUES
+    (1, 'Wang', 'Allen'),
+    (2, 'Alice', 'Bob');
+
+INSERT INTO Address (AddressId, PersonId, City, State)
+VALUES
+    (1, 2, 'New York City', 'New York'),
+    (2, 3, 'Leetcode', 'California');
+
+SELECT firstname, lastname, city, state FROM Person left join Address on Person.PersonId = Address.PersonId;
