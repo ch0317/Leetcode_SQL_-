@@ -57,3 +57,15 @@ INSERT INTO Employee (id, salary) VALUES
 (1, 100),
 (2, 200),
 (3, 300);
+
+SELECT (SELECT DISTINCT salary
+        from Employee
+        ORDER BY salary DESC
+OFFSET 1 LIMIT 1
+) AS SecondHighestSalary;
+
+
+DELETE FROM Employee;
+
+INSERT INTO Employee (id, salary) VALUES
+(1, 100);
