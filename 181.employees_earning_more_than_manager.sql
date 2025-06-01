@@ -39,3 +39,35 @@
 -- | Joe      |
 -- +----------+
 -- 解释: Joe 是唯一挣得比经理多的雇员。
+
+
+CREATE TABLE Employee (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    salary INT,
+    managerId INT
+);
+
+INSERT INTO Employee (id, name, salary, managerId) VALUES
+(1, 'Joe', 70000, 3),
+(2, 'Henry', 80000, 4),
+(3, 'Sam', 60000, NULL),
+(4, 'Max', 90000, NULL);
+
+
+-- my answer
+SELECT a.name as Employee FROM Employee a
+JOIN Employee b ON a.managerId = b.id
+WHERE a.salary > b.salary;
+
+
+
+
+
+
+
+-- expected answer
+SELECT e.name AS Employee
+FROM Employee e
+JOIN Employee m ON e.managerId = m.id
+WHERE e.salary > m.salary;

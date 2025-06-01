@@ -55,3 +55,44 @@
 -- | Henry     |
 -- | Max       |
 -- +-----------+
+
+-- 创建 Customers 表
+CREATE TABLE Customers (
+    id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+-- 创建 Orders 表
+CREATE TABLE Orders (
+    id INT PRIMARY KEY,
+    customerId INT,
+    FOREIGN KEY (customerId) REFERENCES Customers(id)
+);
+
+-- 插入 Customers 表数据
+INSERT INTO Customers (id, name) VALUES
+(1, 'Joe'),
+(2, 'Henry'),
+(3, 'Sam'),
+(4, 'Max');
+
+-- 插入 Orders 表数据
+INSERT INTO Orders (id, customerId) VALUES
+(1, 3),
+(2, 1);
+
+
+-- my
+SELECT Customers.name AS Customers
+FROM Customers left join Orders ON Customers.id = Orders.customerId
+WHERE Orders.id IS NULL;
+
+
+
+
+--answer
+SELECT name AS Customers
+FROM Customers
+LEFT JOIN Orders
+ON Customers.id = Orders.customerId
+WHERE Orders.id IS NULL;
