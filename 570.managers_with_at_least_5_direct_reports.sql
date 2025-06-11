@@ -78,8 +78,6 @@ SELECT e.name FROM Employee e
 
 
 
-
-
 -- solution
 
 SELECT e.name
